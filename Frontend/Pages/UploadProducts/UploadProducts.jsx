@@ -4,7 +4,7 @@ import ProductForm from '../../components/UploadProductForm/ProductForm'
 
 import './UploadProducts.css'
 
-export const UploadProducts = () => {
+export const UploadProducts = ({products,setProducts}) => {
   useEffect(()=>{
     window.scrollTo(0, 0);
   },[]);
@@ -12,7 +12,7 @@ export const UploadProducts = () => {
   return (
     <div className='upload-product'>
        <Header title="Upload New Product" subtitle="Add your product details to showcase in our marketplace"/>
-       <ProductForm/>
+       <ProductForm products={products} setProducts={setProducts}/>
     </div>
   )
 }

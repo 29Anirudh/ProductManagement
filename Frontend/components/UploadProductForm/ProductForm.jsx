@@ -5,7 +5,7 @@ import { FaImage } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Notification from "../Notification/Notification";
 
-const ProductForm = ({ editing = false, productData = null }) => {
+const ProductForm = ({ editing = false, productData = null,products,setProducts }) => {
   const [uploadNotification,setUploadNotification]=useState({
     message:null,
     type:null
@@ -143,9 +143,21 @@ const ProductForm = ({ editing = false, productData = null }) => {
           })
         : await axios.post(`${API_URL}`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
-          });
+          });   
 
       setUploadSuccess(res.data.message);
+      if (editing) {
+        const updatedProducts = products.map((product) =>
+          product._id === productData?._id ? res.data.data : product
+        );
+        setProducts(updatedProducts.sort((a, b) => a.price - b.price));
+      } else {
+        setProducts((prevProducts) =>
+          [...prevProducts, res.data.data].sort((a, b) => a.price - b.price)
+        );
+      }
+
+      
       setUploadNotification({message:"Uploaded successfully",type:"success"})
       setUploadError(null);
       setUploadButtonText(null);

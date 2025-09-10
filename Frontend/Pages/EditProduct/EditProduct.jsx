@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import ProductForm from '../../components/UploadProductForm/ProductForm';
 
-export const EditProduct = () => {
+export const EditProduct = ({products,setProducts}) => {
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
@@ -23,7 +23,7 @@ export const EditProduct = () => {
   return (
     <div className='edit-product'>
        <Header title="Edit the Product" subtitle="Edit your already existing products"/>
-       <ProductForm editing={1} productData={product}/>
+       <ProductForm editing={1} productData={product} products={products} setProducts={setProducts}/>
     </div>
   )
 }

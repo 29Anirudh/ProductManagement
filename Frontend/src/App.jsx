@@ -28,6 +28,7 @@ function App() {
   
       ]
     useEffect(()=>{
+      console.log('eghqvwbjo  nigwcehbqonijpcebdjwn');
       axios.get(`${API_URL}`)
       .then(response=>setProducts(response.data.data))
       .catch(err=>console.log(err));
@@ -44,8 +45,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Navigate to='/products'/>}/>
       <Route path='/products' element={<Products products={sortedProducts} setProducts={setProducts}/>}/>
-      <Route path='/upload-product' element={<UploadProducts/>}/>
-      <Route path='/edit-product/:id' element={<EditProduct/>}/>
+      <Route path='/upload-product' element={<UploadProducts products={products} setProducts={setProducts}/>}/>
+      <Route path='/edit-product/:id' element={<EditProduct products={products} setProducts={setProducts}/>}/>
       <Route path='/search-product' element={<SearchProducts products={sortedProducts} setProducts={setProducts}/>}/>
       <Route path='*' element={<ErrorPage/>}/>
     </Routes>
