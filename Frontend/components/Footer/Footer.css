@@ -38,7 +38,7 @@
 
 .footer-menu-list {
   list-style: none;
-  font-size: large;
+  font-size: medium;
   display: flex;
   gap: 5px;
   flex-direction: column;

@@ -9,8 +9,13 @@ import { UploadProducts } from '../Pages/UploadProducts/UploadProducts'
 import Footer from '../components/Footer/Footer'
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
 import { EditProduct } from '../Pages/EditProduct/EditProduct'
-import Notification from '../components/Notification/Notification'
+import SearchProducts from '../Pages/SearchProducts/SearchProducts'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 function App() {
+  const [products,setProducts]=useState([]);
+  const [sortedProducts,setSortedProducts]=useState([]);
+   const API_URL=import.meta.env.VITE_BACKEND_URL;
   const navItems=[
           {
               name:'Products',
@@ -22,14 +27,26 @@ function App() {
           }
   
       ]
+    useEffect(()=>{
+      axios.get(`${API_URL}`)
+      .then(response=>setProducts(response.data.data))
+      .catch(err=>console.log(err));
+    },[API_URL]);
+    useEffect(() => {
+      if (products.length > 0) {
+        const sorted = [...products].sort((a, b) => a.price - b.price);
+        setSortedProducts(sorted);
+      }
+    }, [products]);
   return (
     <>
     <Navbar navItems={navItems}/>
     <Routes>
       <Route path='/' element={<Navigate to='/products'/>}/>
-      <Route path='/products' element={<Products/>}/>
+      <Route path='/products' element={<Products products={sortedProducts} setProducts={setProducts}/>}/>
       <Route path='/upload-product' element={<UploadProducts/>}/>
       <Route path='/edit-product/:id' element={<EditProduct/>}/>
+      <Route path='/search-product' element={<SearchProducts products={sortedProducts} setProducts={setProducts}/>}/>
       <Route path='*' element={<ErrorPage/>}/>
     </Routes>
     <Footer navItems={navItems}/>
