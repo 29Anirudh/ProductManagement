@@ -12,8 +12,10 @@ import { EditProduct } from '../Pages/EditProduct/EditProduct'
 import SearchProducts from '../Pages/SearchProducts/SearchProducts'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Loading from '../components/Loading/Loading'
 function App() {
   const [products,setProducts]=useState([]);
+  const [loading,setLoading]=useState(false);
   const [sortedProducts,setSortedProducts]=useState([]);
    const API_URL=import.meta.env.VITE_BACKEND_URL;
   const navItems=[
@@ -28,10 +30,11 @@ function App() {
   
       ]
     useEffect(()=>{
-      console.log('eghqvwbjo  nigwcehbqonijpcebdjwn');
+      setLoading(true);
       axios.get(`${API_URL}`)
       .then(response=>setProducts(response.data.data))
-      .catch(err=>console.log(err));
+      .catch(err=>console.log(err))
+      .finally(()=>setLoading(false))
     },[]);
     useEffect(() => {
       if (products.length > 0) {
@@ -39,15 +42,16 @@ function App() {
         setSortedProducts(sorted);
       }
     }, [products]);
+    if(loading)return <Loading/>;
   return (
     <>
     <Navbar navItems={navItems}/>
     <Routes>
       <Route path='/' element={<Navigate to='/products'/>}/>
-      <Route path='/products' element={<Products products={sortedProducts} setProducts={setProducts}/>}/>
+      <Route path='/products' element={<Products products={sortedProducts} setProducts={setSortedProducts}/>}/>
       <Route path='/upload-product' element={<UploadProducts products={products} setProducts={setProducts}/>}/>
       <Route path='/edit-product/:id' element={<EditProduct products={products} setProducts={setProducts}/>}/>
-      <Route path='/search-product' element={<SearchProducts products={sortedProducts} setProducts={setProducts}/>}/>
+      <Route path='/search-product' element={<SearchProducts products={sortedProducts} setProducts={setSortedProducts}/>}/>
       <Route path='*' element={<ErrorPage/>}/>
     </Routes>
     <Footer navItems={navItems}/>

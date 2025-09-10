@@ -6,8 +6,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Notification from "../../components/Notification/Notification";
 import { useNavigate } from "react-router-dom";
+import ProductsSort from "../../components/ProductsSort/ProductsSort";
 
 const Products = ({ products, setProducts }) => {
+  const [order,setOrder]=useState(false);
   const [deleteNotification, setDeleteNotification] = useState({
     message: null,
     type: "",
@@ -17,6 +19,10 @@ const Products = ({ products, setProducts }) => {
   }, []);
   function handleDeleteInUI(id) {
     setProducts((products) => products.filter((product) => product._id !== id));
+  }
+  function handleOrder(){
+    setProducts((prev)=>[...prev].reverse())
+    setOrder(!order);
   }
   const navigate = useNavigate();
   return (
@@ -34,6 +40,7 @@ const Products = ({ products, setProducts }) => {
           title="Discover Amazing Products"
           subtitle="Explore our curated collection of high-quality products designed to enhance your lifestyle and productivity"
         />
+        <ProductsSort setOrder={setOrder} order={order} handleOrder={handleOrder} length={products.length}/>
         {products.length === 0 ? (
           <>
             <h1 style={{ textAlign: "center", alignContent: "center" }}>

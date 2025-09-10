@@ -3,8 +3,10 @@ import './SearchProducts.css'
 import Header from '../../components/Header/Header';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useEffect, useState } from 'react';
+import ProductsSort from '../../components/ProductsSort/ProductsSort';
 
 const SearchProducts = ({products,setProducts}) => {
+    const [order,setOrder]=useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const search = queryParams.get("query") || "";
@@ -18,11 +20,16 @@ const SearchProducts = ({products,setProducts}) => {
   function handleDeleteInUI(id){
     setProducts((products)=>products.filter((product)=>product._id!==id));
   }
+  function handleOrder(){
+    setProducts((prev)=>[...prev].reverse())
+    setOrder(!order);
+  }
   return (
     <>
          {deleteNotification.message&&<Notification notification={deleteNotification} closeNotification={()=>setDeleteNotification({message:null,type:''})}/>}
         <div className="products">
             <Header title="Search Successful" subtitle={`Search Results for '${search}'`}/>
+            <ProductsSort setOrder={setOrder} order={order} handleOrder={handleOrder} length={filteredProducts.length}/>
             {search.length!==0?(
                 filteredProducts.length===0?(
                 <>

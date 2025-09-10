@@ -1,0 +1,9 @@
+.loading-screen{
+    min-height:100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    color: green;
+    background:linear-gradient(to bottom,rgb(225, 225, 228),white);
+}

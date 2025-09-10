@@ -47,7 +47,7 @@ const Navbar = ({ navItems }) => {
         <div className="search-bar desktop-only">
           <input
             type="text"
-            placeholder="Enter your search here"
+            placeholder="Search Products.."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit()}

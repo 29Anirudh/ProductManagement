@@ -1,0 +1,35 @@
+.product-sort{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+.product-sort-text{
+    font-weight:bold ;
+}
+.product-sort-btn{
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: aliceblue;
+    font-weight: 500;
+    transition: all 150ms ease-in-out;
+}
+.product-sort-btn:hover{
+    transform: scale(1.01);
+    background-color: rgb(33, 78, 95);
+    color: aliceblue;
+    font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+    .product-sort-btn{
+        font-size: smaller;
+    }
+    .product-sort-text{
+        font-size: small;
+    }
+}
