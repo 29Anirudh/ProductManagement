@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: "https://product-management-seven-lilac.vercel.app",
+  origin: ["https://product-management-seven-lilac.vercel.app","http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

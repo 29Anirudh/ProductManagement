@@ -31,7 +31,7 @@ function App() {
       axios.get(`${API_URL}`)
       .then(response=>setProducts(response.data.data))
       .catch(err=>console.log(err));
-    },[API_URL]);
+    },[]);
     useEffect(() => {
       if (products.length > 0) {
         const sorted = [...products].sort((a, b) => a.price - b.price);
