@@ -1,0 +1,42 @@
+.error-page{
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(197, 183, 183);
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+}
+
+.error-main{
+    font-size: 1.5rem;
+    color: rgb(218, 62, 62);
+    font-weight: 600;
+}
+
+.error-text{
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 500;
+}
+
+.error-lg{
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+@media (max-width: 768px) {
+    .error-main {
+        font-size: 1.2rem;
+    }
+    .error-lg {
+        font-size: 1.5rem;
+    }
+    .error-text {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}

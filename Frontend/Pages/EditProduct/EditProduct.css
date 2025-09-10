@@ -1,0 +1,10 @@
+.edit-product{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    padding: 90px 0;
+    background: linear-gradient(to bottom,rgb(192, 197, 212),white);
+    justify-content: center;
+    align-items: center;
+}

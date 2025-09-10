@@ -1,0 +1,32 @@
+.upload-product {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh; 
+  padding: 80px 20px; 
+  background: linear-gradient(to bottom, rgb(212, 192, 212), white);
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 1024px) {
+  .upload-product {
+    padding: 80px 15px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .upload-product {
+    padding: 80px 10px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .upload-product {
+    padding: 80px 8px;
+  }
+}

@@ -1,0 +1,33 @@
+.notification{
+    position: fixed;
+    width: 200px;
+    background-color: black;
+    color: lightgreen;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding:15px 25px;
+    border-radius: 10px;
+    top:100px;
+    right: 20px;
+    font-size: large;
+    align-items: center;
+    box-shadow: 3px 0 6px black ;
+}
+.notification-cross{
+    cursor: pointer;
+}
+.notification.success {
+  background-color: #28a745; 
+  color: white;
+}
+
+.notification.error {
+  background-color: #dc3545;
+  color: white;
+}
+.notification-cross:hover{
+    color: rgb(221, 59, 59);
+}
